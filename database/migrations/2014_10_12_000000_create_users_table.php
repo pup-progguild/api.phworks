@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('contact');
             $table->integer('citycode');
             $table->integer('provcode');
+            $table->string('profile_summary');
             $table->rememberToken();
             $table->timestamps();
         });

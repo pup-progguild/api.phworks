@@ -20,8 +20,8 @@ class UserTableSeeder extends Seeder
             'password' => Hash::make('Jesus'),
             'email' => 'ginodejesus02@gmail.com',
             'contact' => '09308229814',
-                        
-
+            'citycode' => '',
+            'provcode' => ''
         ]);
     }
 }
