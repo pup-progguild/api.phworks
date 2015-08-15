@@ -14,6 +14,11 @@ use SMS;
 
 class ServiceTransactionController extends ParserController
 {
+    public function index()
+    {
+        return ServiceTransaction::get();
+    }
+
     public function parseServiceDescription($description)
     {
         // $description = "all gino is a besides man under the table from PUP";

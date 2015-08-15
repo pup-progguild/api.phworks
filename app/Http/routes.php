@@ -29,8 +29,10 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function() {
     Route::get('send', 'ServiceTransactionController@sendMessage');
 
     Route::post('authenticate', 'UserController@authenticate');
-    Route::post('service', 'ServiceTransactionController@getRequest');
     Route::get('city/{provcode}', 'CityController@show');
+    
+    Route::post('service', 'ServiceTransactionController@getRequest');
+    Route::get('service', 'ServiceTransactionController@index');
     
     Route::resource('client', 'UserController',[
         'only' => [
