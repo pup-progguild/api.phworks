@@ -23,6 +23,7 @@ class CreateEmployeesTable extends Migration
             $table->integer('citycode');
             $table->integer('provcode');
             $table->string('career_summary');
+            $table->float('rating');
             $table->rememberToken();
             $table->timestamps();
         });

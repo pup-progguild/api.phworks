@@ -20,8 +20,10 @@ class UserTableSeeder extends Seeder
             'password' => Hash::make('Jesus'),
             'email' => 'ginodejesus02@gmail.com',
             'contact' => '09308229814',
-            'citycode' => '',
-            'provcode' => ''
+            'citycode' => 45808,
+            'provcode' => 458,
+            'profile_summary' => 'Computer Science student in PUP',
+            'rating' => 0
         ]);
     }
 }
