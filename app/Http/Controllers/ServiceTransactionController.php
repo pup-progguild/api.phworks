@@ -7,11 +7,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use DB;
 use App\User;
-use App\Employee;
+use App\Province;
+use App\Municipality;
+
 
 use App\ServiceTransaction;
 use SMS;
+
 class ServiceTransactionController extends ParserController
 {
     public function parseServiceDescription($description)
@@ -33,11 +37,50 @@ class ServiceTransactionController extends ParserController
 
     public function getRequest(Request $request)
     {
-        $data = $request->only('field', 'description');
+        $matchPoints = 0;
+        $data = $request->only('client_id', 'field', 'description');
+        $matchEmployees = array();
 
-        $tags = $this->parseServiceDescription($data['description']);
+        if (isset($data['field'])) 
+        {
+            $tags = isset($data['description']) ? $this->parseServiceDescription($data['description']) : null;
+            
+            // Employees match in the field
+            $employees = DB::table('users')
+                        ->join('provinces', 'provinces.provcode' , '=', 'users.provcode')
+                        ->join('municipality', 'municipality.citycode' , '=', 'users.citycode')
+                        ->select('users.*', 'provinces.provname', 'municipality.city_name')
+                        ->get();
+            $client = User::find($data['client_id']);
 
-        die(var_dump($tags));
+            foreach ($employees as $key => $employee) {
+                // Tags Matching
+                $data = (array)$employee;
+
+                $data['tags'] = json_decode($data['tags']);
+                $data['tagsCount'] = count($data['tags']);
+                $data['tagPoints'] = 0;
+
+                foreach ($tags as $key => $tag) {
+                    if (in_array($tag, $data['tags'])) {
+                        $data['tagPoints']++;
+                    }
+                }
+
+                $data['tagPoints'] = $data['tagsCount'] > 0 ? $data['tagPoints'] /  $data['tagsCount'] : 0;
+                array_push($matchEmployees, $data);
+                
+                //Location Matching
+                // $data['provname'] = Province::where('provcode', '=', $user['provcode'])->get(array('provname'));
+                // $data['cityname'] = Municipality::where('citycode', '=', $user['citycode'])->get(array('city_name'));
+
+                // $data['provname'] = $data['provname'][0]['provname'];
+                // $data['cityname'] = $data['cityname'][0]['city_name'];
+            }
+        }
+            die(var_dump($matchEmployees));
+
+
         // $parsed = $this->parseServiceDescription($request->description);
     } 
 
@@ -46,10 +89,5 @@ class ServiceTransactionController extends ParserController
         SMS::send('This is my message', [], function($sms) {
             $sms->to('+639308229814');
         });
-    }
-
-    public function processMatching()
-    {
-        $employee = Employee
     }
 }

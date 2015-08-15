@@ -15,6 +15,11 @@ class FieldTableSeeder extends Seeder
         Field::truncate();
 
         Field::create([
+            'field_name' => 'null',
+            'field_desc' => 'null'
+        ]);
+
+        Field::create([
             'field_name' => 'Elevator Installers and Repairers',
             'field_desc' => 'Assemble, install, repair, or maintain electric or hydraulic freight or passenger elevators, escalators, or dumbwaiters.'
         ]);

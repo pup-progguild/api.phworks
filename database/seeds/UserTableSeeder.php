@@ -15,7 +15,7 @@ class UserTableSeeder extends Seeder
         User::truncate();
 
         User::create([
-            'field_id' => '0',
+            'field_id' => '1',
             'name' => 'Gino I. de Jesus',
             'username' => 'gidj',
             'password' => Hash::make('Jesus'),
@@ -30,7 +30,7 @@ class UserTableSeeder extends Seeder
 
 
         User::create([
-            'field_id' => '5',
+            'field_id' => '6',
             'name' => 'Ben Iglesias',
             'username' => 'ben',
             'password' => Hash::make('Iglesias'),
