@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\Province;
+use App\Municipality;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
@@ -136,6 +138,12 @@ class UserController extends Controller
             return response()->json(['token_absent'], $e->getStatusCode());
 
         }
+
+        $user['provname'] = Province::where('provcode', '=', $user['provcode'])->get(array('provname'));
+        $user['cityname'] = Municipality::where('citycode', '=', $user['citycode'])->get(array('city_name'));
+
+        $user['provname'] = $user['provname'][0]['provname'];
+        $user['cityname'] = $user['cityname'][0]['city_name'];
 
         // the token is valid and we have found the user via the sub claim
         return response()->json(compact('user'));
