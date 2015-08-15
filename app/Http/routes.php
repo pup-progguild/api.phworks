@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//, 'middleware' => 'cors'
-Route::group(['prefix' => 'api'], function() {
+
+Route::group(['prefix' => 'api', 'middleware' => 'cors'], function() {
 
    //  Route::resource('authenticate', 'AuthenticateController', [
    //      'only' => [
