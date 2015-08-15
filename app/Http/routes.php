@@ -23,6 +23,9 @@ Route::group(['prefix' => 'api'], function() {
    //         'index'
    //     ]
    // ]);
+
+    Route::get('parse', 'ServiceTransactionController@parseServiceDescription');
+
     
     Route::resource('client', 'UserController',[
         'only' => [
