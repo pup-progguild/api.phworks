@@ -25,7 +25,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function() {
    // ]);
 
     Route::get('parse', 'ServiceTransactionController@parseServiceDescription');
-
+    Route::post('authenticate', 'UserController@authenticate');
     
     Route::resource('client', 'UserController',[
         'only' => [
