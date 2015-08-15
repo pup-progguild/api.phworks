@@ -44,6 +44,10 @@ class FieldTableSeeder extends Seeder
             'field_desc' => 'A person who makes and repairs wooden objects and structures.'
         ]);
 
+        Field::create([
+            'field_name' => 'Gardener',
+            'field_desc' => 'A person who tends and cultivates a garden as a pastime or for a living.'
+            ])
 
 
 
