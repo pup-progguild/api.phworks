@@ -43,5 +43,20 @@ class UserTableSeeder extends Seeder
             'tags' => '["roof","holes"]',
             'rating' => 0
         ]);
+
+        User::create([
+            'field_id' => '3',
+            'name' => 'Jose San Juan',
+            'username' => 'jose',
+            'password' => Hash::make('SanJuan'),
+            'email' => 'jose@gmail.com',
+            'contact' => '09261323230',
+            'citycode' => 45809,
+            'provcode' => 458,
+            'role' => 'employee',
+            'profile_summary' => 'Plumber for almost 10 years.',
+            'tags' => '["leak","pipes"]',
+            'rating' => 0
+        ]);
     }
 }

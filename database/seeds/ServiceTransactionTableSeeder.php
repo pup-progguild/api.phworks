@@ -22,5 +22,15 @@ class ServiceTransactionTableSeeder extends Seeder
             'user_rate' => '4',
             'employee_rate' => '4'
         ]);
+        
+        ServiceTransaction::create([
+            'field_id' => '3',
+            'user_id' => '1',
+            'employee_id' => '3',
+            'service_desc' => "leak in my pipes.",
+            'user_rate' => '4',
+            'employee_rate' => '4'
+        ]);
     }
 }
+
