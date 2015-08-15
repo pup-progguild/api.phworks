@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Request;
+use Illuminate\Http\Request;
 
-use AParseTrait;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -13,9 +12,9 @@ use App\ServiceTransaction;
 
 class ServiceTransactionController extends Controller
 {
-    public function parseServiceDescription()
+    public function parseServiceDescription($description)
     {
-        $description = "all gino is a besides man under the table from PUP";
+        // $description = "all gino is a besides man under the table from PUP";
         $description = explode(' ', trim($description));
         
         $description = array_map('strtolower', $description);
@@ -110,10 +109,13 @@ class ServiceTransactionController extends Controller
     }
 
 
-   // public function getRequest()
-   // {
-   //      $requests = Request::all();
+   public function getRequest(Request $request)
+   {
+        $data = $request->only('field', 'description');
 
-   //      $parsed = $this->parseServiceDescription($request->description);
-   // } 
+        $tags = $this->parseServiceDescription($data['description']);
+
+        die(var_dump($tags));
+        // $parsed = $this->parseServiceDescription($request->description);
+   } 
 }
