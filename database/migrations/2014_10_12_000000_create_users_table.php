@@ -14,6 +14,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('user_id');
+            $table->integer('field_id');
             $table->string('name');
             $table->string('username')->unique();
             $table->string('password', 60);
@@ -22,7 +23,8 @@ class CreateUsersTable extends Migration
             $table->integer('citycode');
             $table->integer('provcode');
             $table->string('profile_summary');
-            $table->string('role')->default('client');
+            $table->enum('role', ['client', 'employee']);
+            $table->string('tags')->default('[]');
             $table->float('rating');
             $table->rememberToken();
             $table->timestamps();

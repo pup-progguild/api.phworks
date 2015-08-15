@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\Employee;
+
 use App\ServiceTransaction;
 use SMS;
 class ServiceTransactionController extends ParserController
@@ -29,8 +31,6 @@ class ServiceTransactionController extends ParserController
         return $description;
     }
 
-
-
     public function getRequest(Request $request)
     {
         $data = $request->only('field', 'description');
@@ -46,5 +46,10 @@ class ServiceTransactionController extends ParserController
         SMS::send('This is my message', [], function($sms) {
             $sms->to('+639308229814');
         });
+    }
+
+    public function processMatching()
+    {
+        $employee = Employee
     }
 }

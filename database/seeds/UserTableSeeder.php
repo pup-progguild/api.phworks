@@ -15,6 +15,7 @@ class UserTableSeeder extends Seeder
         User::truncate();
 
         User::create([
+            'field_id' => '0',
             'name' => 'Gino I. de Jesus',
             'username' => 'gidj',
             'password' => Hash::make('Jesus'),
@@ -23,6 +24,21 @@ class UserTableSeeder extends Seeder
             'citycode' => 45808,
             'provcode' => 458,
             'profile_summary' => 'Computer Science student in PUP',
+            'rating' => 0
+        ]);
+
+
+        User::create([
+            'field_id' => '5',
+            'name' => 'Ben Iglesias',
+            'username' => 'ben',
+            'password' => Hash::make('Iglesias'),
+            'email' => 'ben@gmail.com',
+            'contact' => '09362617335',
+            'citycode' => 45808,
+            'provcode' => 458,
+            'profile_summary' => 'Carpenter for almost 10 years.',
+            'tags' => '["roof","holes"]',
             'rating' => 0
         ]);
     }
