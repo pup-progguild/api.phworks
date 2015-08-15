@@ -14,3 +14,32 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//, 'middleware' => 'cors'
+Route::group(['prefix' => 'api'], function() {
+
+   //  Route::resource('authenticate', 'AuthenticateController', [
+   //      'only' => [
+   //         'index'
+   //     ]
+   // ]);
+    
+    Route::resource('client', 'UserController',[
+        'only' => [
+            'index', 'store', 'update', 'destroy'
+        ]
+    ]);
+
+    Route::resource('employee', 'EmployeeController',[
+        'only' => [
+            'index', 'store', 'update', 'destroy'
+        ]
+    ]); 
+
+    Route::resource('field', 'FieldController',[
+        'only' => [
+            'index', 'store', 'update', 'destroy'
+        ]
+    ]);
+
+});
