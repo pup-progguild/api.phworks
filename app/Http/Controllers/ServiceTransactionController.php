@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use App\ServiceTransaction;
-
+use SMS;
 class ServiceTransactionController extends Controller
 {
     public function parseServiceDescription($description)
@@ -118,4 +118,11 @@ class ServiceTransactionController extends Controller
         die(var_dump($tags));
         // $parsed = $this->parseServiceDescription($request->description);
    } 
+
+   public function sendMessage()    
+   {
+        SMS::send('This is my message', [], function($sms) {
+            $sms->to('+639308229814');
+        });
+   }
 }

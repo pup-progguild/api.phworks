@@ -50,11 +50,11 @@
 */
 
 return [
-    'driver' => 'Selected Driver',
-    'from' => 'Your Number or Email',
+    'driver' => 'twilio',
+    'from' => '+18327261640',
     'twilio' => [
-        'account_sid' => 'Your SID',
-        'auth_token' => 'Your Token',
+        'account_sid' => 'AC525e4558cde08dcea2f181fd4153e32c',
+        'auth_token' => 'bf2d5f07048b161d3357a95ae66a4106',
         'verify' => true,
     ],
     'eztexting' => [

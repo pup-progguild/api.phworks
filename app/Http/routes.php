@@ -24,8 +24,9 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function() {
    //     ]
    // ]);
 
-    Route::get('parse', 'ServiceTransactionController@parseServiceDescription');
+    // Route::get('parse', 'ServiceTransactionController@parseServiceDescription');
     Route::get('authenticate/user', 'UserController@getAuthenticatedUser');
+    Route::get('send', 'ServiceTransactionController@sendMessage');
 
     Route::post('authenticate', 'UserController@authenticate');
     Route::post('service', 'ServiceTransactionController@getRequest');
