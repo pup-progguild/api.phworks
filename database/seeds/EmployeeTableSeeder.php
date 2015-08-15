@@ -24,6 +24,7 @@ class EmployeeTableSeeder extends Seeder
             'citycode' => 45808,
             'provcode' => 458,
             'career_summary' => 'Carpenter for almost 10 years.',
+            'tags' => '["roof","holes"]',
             'rating' => 0
         ]);
     }

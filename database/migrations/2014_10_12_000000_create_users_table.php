@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->integer('citycode');
             $table->integer('provcode');
             $table->string('profile_summary');
+            $table->string('role')->default('client');
             $table->float('rating');
             $table->rememberToken();
             $table->timestamps();

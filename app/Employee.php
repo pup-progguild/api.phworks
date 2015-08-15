@@ -20,4 +20,11 @@ class Employee extends Model
      * @var array
      */
     protected $fillable = ['field_id', 'name', 'username', 'email', 'password', 'contact', 'citycode', 'provcode', 'carerr_summary', 'rating'];
+
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['password', 'remember_token'];
 }
