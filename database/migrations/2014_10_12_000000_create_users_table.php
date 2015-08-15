@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->enum('role', ['client', 'employee']);
             $table->string('tags')->default('[]');
             $table->float('rating');
+            $table->string('image');
             $table->rememberToken();
             $table->timestamps();
         });
