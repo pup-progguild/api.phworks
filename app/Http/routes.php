@@ -45,6 +45,18 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function() {
         'only' => [
             'index', 'store', 'update', 'destroy'
         ]
+    ]); 
+
+    Route::resource('province', 'ProvinceController',[
+        'only' => [
+            'index', 'store', 'update', 'destroy'
+        ]
+    ]);
+
+    Route::resource('city', 'CityController',[
+        'only' => [
+            'index', 'store', 'update', 'destroy'
+        ]
     ]);
 
 });
