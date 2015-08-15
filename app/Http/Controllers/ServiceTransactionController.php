@@ -8,10 +8,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use DB;
-use App\User;
-use App\Province;
-use App\Municipality;
-
 
 use App\ServiceTransaction;
 use SMS;
@@ -38,27 +34,34 @@ class ServiceTransactionController extends ParserController
     public function getRequest(Request $request)
     {
         $matchPoints = 0;
-        $data = $request->only('client_id', 'field', 'description');
+        $request = $request->only('client_id', 'field', 'description');
         $matchEmployees = array();
 
-        if (isset($data['field'])) 
+        if (isset($request['field'])) 
         {
-            $tags = isset($data['description']) ? $this->parseServiceDescription($data['description']) : null;
+            $tags = isset($request['description']) ? $this->parseServiceDescription($request['description']) : null;
             
             // Employees match in the field
             $employees = DB::table('users')
+                        ->where('field_id', '=', $request['field'])
                         ->join('provinces', 'provinces.provcode' , '=', 'users.provcode')
                         ->join('municipality', 'municipality.citycode' , '=', 'users.citycode')
                         ->select('users.*', 'provinces.provname', 'municipality.city_name')
                         ->get();
-            $client = User::find($data['client_id']);
+            $client = DB::table('users')
+                        ->where('user_id', '=', $request['client_id'])
+                        ->join('provinces', 'provinces.provcode' , '=', 'users.provcode')
+                        ->join('municipality', 'municipality.citycode' , '=', 'users.citycode')
+                        ->select('users.*', 'provinces.provname', 'municipality.city_name')
+                        ->get();
+            $client = (array)$client[0];
 
             foreach ($employees as $key => $employee) {
                 // Tags Matching
                 $data = (array)$employee;
 
                 $data['tags'] = json_decode($data['tags']);
-                $data['tagsCount'] = count($data['tags']);
+                $tagsCount = count($data['tags']);
                 $data['tagPoints'] = 0;
 
                 foreach ($tags as $key => $tag) {
@@ -67,22 +70,35 @@ class ServiceTransactionController extends ParserController
                     }
                 }
 
-                $data['tagPoints'] = $data['tagsCount'] > 0 ? $data['tagPoints'] /  $data['tagsCount'] : 0;
-                array_push($matchEmployees, $data);
+                $data['tagPoints'] = $tagsCount > 0 ? $data['tagPoints'] /  $tagsCount : 0;
                 
                 //Location Matching
-                // $data['provname'] = Province::where('provcode', '=', $user['provcode'])->get(array('provname'));
-                // $data['cityname'] = Municipality::where('citycode', '=', $user['citycode'])->get(array('city_name'));
+                $data['locationPoints'] = 0;
+          
+                if ($data['provcode'] == $client['provcode']) {
+                    $data['locationPoints'] += 0.5;
+                }
 
-                // $data['provname'] = $data['provname'][0]['provname'];
-                // $data['cityname'] = $data['cityname'][0]['city_name'];
+                if ($data['citycode'] == $client['citycode']) {
+                    $data['locationPoints'] += 0.5;
+                }
+
+                //rating
+                $employer_rate = DB::table('service_transaction')
+                                ->where('employee_id', $data['user_id'])
+                                ->sum('user_rate');
+                $rate_count = DB::table('service_transaction')
+                                ->where('employee_id', $data['user_id'])
+                                ->count();
+                $data['rating'] = $rate_count > 0 ? $employer_rate / $rate_count : 0 ;
+                array_push($matchEmployees, $data);
             }
         }
-            die(var_dump($matchEmployees));
 
-
+        return $matchEmployees;
         // $parsed = $this->parseServiceDescription($request->description);
     } 
+
 
     public function sendMessage()    
     {
