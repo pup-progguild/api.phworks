@@ -17,14 +17,8 @@ Route::get('/', function () {
 
 
 Route::group(['prefix' => 'api', 'middleware' => 'cors'], function() {
+    Route::post('request', 'ServiceTransactionController@getRequest');
 
-   //  Route::resource('authenticate', 'AuthenticateController', [
-   //      'only' => [
-   //         'index'
-   //     ]
-   // ]);
-
-    // Route::get('parse', 'ServiceTransactionController@parseServiceDescription');
     Route::get('authenticate/user', 'UserController@getAuthenticatedUser');
     Route::get('user/employee', 'UserController@getEmployees');
     Route::post('send', 'ServiceTransactionController@sendMessage');
@@ -32,7 +26,6 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function() {
     Route::post('authenticate', 'UserController@authenticate');
     Route::get('city/{provcode}', 'CityController@show');
     
-    Route::post('service', 'ServiceTransactionController@getRequest');
     Route::get('service', 'ServiceTransactionController@index');
     
     Route::resource('client', 'UserController',[

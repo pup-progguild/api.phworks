@@ -143,6 +143,7 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
         Barryvdh\Cors\ServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         SimpleSoftwareIO\SMS\SMSServiceProvider::class
