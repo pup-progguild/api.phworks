@@ -13,6 +13,8 @@ use App\Municipality;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
+use DB;
+
 class UserController extends Controller
 {
     public function __construct()
@@ -147,5 +149,20 @@ class UserController extends Controller
 
         // the token is valid and we have found the user via the sub claim
         return response()->json(compact('user'));
+    }
+
+    public function getEmployees()
+    {
+        header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+
+
+        $employees = DB::table('users')
+                        ->where('role', '=', 'employee')
+                        ->join('provinces', 'provinces.provcode' , '=', 'users.provcode')
+                        ->join('field', 'field.field_id' , '=', 'users.field_id')
+                        ->join('municipality', 'municipality.citycode' , '=', 'users.citycode')
+                        ->select('users.*', 'provinces.provname', 'municipality.city_name', 'field_name')
+                        ->get();
+        return $employees;                        
     }
 }

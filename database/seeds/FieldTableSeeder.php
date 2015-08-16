@@ -15,8 +15,8 @@ class FieldTableSeeder extends Seeder
         Field::truncate();
 
         Field::create([
-            'field_name' => 'null',
-            'field_desc' => 'null'
+            'field_name' => 'foreman',
+            'field_desc' => 'a worker, especially a man, who supervises and directs other workers.'
         ]);
 
         Field::create([
@@ -47,9 +47,6 @@ class FieldTableSeeder extends Seeder
         Field::create([
             'field_name' => 'Gardener',
             'field_desc' => 'A person who tends and cultivates a garden as a pastime or for a living.'
-            ])
-
-
-
+        ]);
     }
 }

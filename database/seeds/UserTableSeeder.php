@@ -25,7 +25,8 @@ class UserTableSeeder extends Seeder
             'provcode' => 458,
             'role' => 'client',
             'profile_summary' => 'Computer Science student in PUP Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus a iusto rerum nihil praesentium quas tempora perferendis nulla molestiae earum reiciendis quibusdam sapiente eaque in, eos id quae explicabo quam.',
-            'rating' => 0
+            'rating' => 0,
+            'image' => 'avatar.jpg'
         ]);
 
 
@@ -41,7 +42,7 @@ class UserTableSeeder extends Seeder
             'role' => 'employee',
             'profile_summary' => 'Carpenter for almost 10 years. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere voluptatum sed optio veniam porro pariatur sint laudantium ad adipisci dignissimos quod ratione accusantium, nihil odio, blanditiis necessitatibus distinctio sapiente eveniet.',
             'tags' => '["roof","holes"]',
-            'rating' => 0
+            'rating' => 0,
             'image' => 'mat.png'
         ]);
 
@@ -51,13 +52,13 @@ class UserTableSeeder extends Seeder
             'username' => 'jose',
             'password' => Hash::make('SanJuan'),
             'email' => 'jose@gmail.com',
-            'contact' => '09261323230',
+            'contact' => '09261328230',
             'citycode' => 45809,
             'provcode' => 458,
             'role' => 'employee',
             'profile_summary' => 'Plumber for almost 10 years. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore qui cumque, sit deleniti aperiam ratione, aliquam! Sed harum totam minus, repudiandae reiciendis saepe omnis? Atque architecto quasi perferendis similique dicta!',
             'tags' => '["leak","pipes"]',
-            'rating' => 0
+            'rating' => 0,
             'image' => 'konrad.png'
         ]);
 
@@ -74,7 +75,7 @@ class UserTableSeeder extends Seeder
             'role' => 'employee',
             'profile_summary' => 'Professional Mechanic Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque debitis omnis et ratione sequi atque tempora. Cum perspiciatis optio mollitia, nihil, dolore nam necessitatibus enim perferendis dolores repellat, ex consectetur?',
             'tags' => '["install","assemble", "repair", "maintain", "electric", "elavators", "escalators", "passenger"]',
-            'rating' => 5
+            'rating' => 5,
             'image' => 'james.png'
         ]);
 
@@ -90,7 +91,7 @@ class UserTableSeeder extends Seeder
             'role' => 'employee',
             'profile_summary' => 'Experienced Carpenter for 15 years Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel id, fugit possimus culpa ducimus doloribus soluta dolorem incidunt ipsa facere, aperiam corrupti odio reprehenderit dignissimos perspiciatis! Sequi velit modi, ducimus?',
             'tags' => '["roof","holes"]',
-            'rating' => 0
+            'rating' => 0,
             'image' => 'noel.png'
         ]);
 
@@ -106,7 +107,7 @@ class UserTableSeeder extends Seeder
             'role' => 'employee',
             'profile_summary' => 'Green thumb since birth Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem minima in sint aspernatur, dicta optio iusto facilis dolorum delectus. Sint quam dolore saepe debitis cum quod est et commodi porro.',
             'tags' => '["cultivate","water", "garden", "cut", "trim", "crop", "seed"]',
-            'rating' => 4
+            'rating' => 4,
             'image' => 'gerald.png'
         ]);
 
@@ -122,7 +123,7 @@ class UserTableSeeder extends Seeder
             'role' => 'employee',
             'profile_summary' => 'Transportation Inspector for almost 5 years. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora iusto quam asperiores, tenetur facere obcaecati non quaerat, sed corporis ex cum, dolorum placeat temporibus quidem explicabo laborum alias enim?',
             'tags' => '["rail","transport", "inspectors", "freight", "vehicles", "inspect"]',
-            'rating' => 1
+            'rating' => 1,
             'image' => 'del.png'
         ]);
 
@@ -139,7 +140,7 @@ class UserTableSeeder extends Seeder
             'role' => 'employee',
             'profile_summary' => 'Crane Operator for 2 years. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, ea molestiae obcaecati. Incidunt mollitia consequuntur quam amet beatae, provident voluptas quasi voluptatibus! Eum dignissimos dolore asperiores hic perspiciatis explicabo voluptate?',
             'tags' => '["mobile", "tower", "cranes", "boom", "trucks"]',
-            'rating' => 2
+            'rating' => 2,
             'image' => 'kristine.png'
         ]);
     }

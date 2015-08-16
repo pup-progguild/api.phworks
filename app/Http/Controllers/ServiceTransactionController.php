@@ -16,7 +16,13 @@ class ServiceTransactionController extends ParserController
 {
     public function index()
     {
-        return ServiceTransaction::get();
+        $services = DB::table('service_transaction')
+                    ->join('users', 'users.user_id', '=', 'service_transaction.employee_id')
+                    ->join('field', 'field.field_id', '=', 'service_transaction.field_id')
+                    ->select('service_transaction.*', 'field.field_name', 'users.*')
+                    ->get();
+        // return ServiceTransaction::get();
+        return $services;
     }
 
     public function parseServiceDescription($description)
@@ -105,10 +111,11 @@ class ServiceTransactionController extends ParserController
     } 
 
 
-    public function sendMessage()    
+    public function sendMessage(Request $request)    
     {
-        SMS::send('This is my message', [], function($sms) {
-            $sms->to('+639308229814');
+        $num = $request['number'];
+        SMS::send($request['name'] + ': ' + $request['message'], [], function($sms) {
+            $sms->to($num);
         });
     }
 }
